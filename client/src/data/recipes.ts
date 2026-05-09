@@ -10166,12 +10166,7 @@ export const recipes: Recipe[] = [
       "Taste and adjust seasoning with additional salt or vinegar as needed.",
       "Allow chimichurri to rest at room temperature for at least 30 minutes before serving to fully develop flavor."
     ],
-    tips: [
-      "Fresno peppers give clean heat + subtle sweetness without overpowering the herbs.",
-      "Hand chopping keeps the texture correct — avoid blending.",
-      "Best after 2–4 hours; refrigerate up to 5 days and bring back to room temp before service.",
-      "Excellent with grilled steak, shrimp, chicken, roasted vegetables, or as a sandwich spread."
-    ]
+    tips: "Fresno peppers give clean heat + subtle sweetness without overpowering the herbs. Hand chopping keeps the texture correct - avoid blending. Best after 2-4 hours; refrigerate up to 5 days and bring back to room temp before service. Excellent with grilled steak, shrimp, chicken, roasted vegetables, or as a sandwich spread."
   }
 ];
 

@@ -1,7 +1,15 @@
 import { z } from "zod";
 
-export const stations = ["sautee", "salad", "fry", "batch", "breakfast", "desserts", "expo"] as const;
-export type Station = typeof stations[number];
+export const stations = [
+  "sautee",
+  "salad",
+  "fry",
+  "batch",
+  "breakfast",
+  "desserts",
+  "expo",
+] as const;
+export type Station = (typeof stations)[number];
 
 export const stationLabels: Record<Station, string> = {
   sautee: "Sautée",
@@ -10,23 +18,22 @@ export const stationLabels: Record<Station, string> = {
   batch: "Batch",
   breakfast: "Breakfast",
   desserts: "Desserts",
-  expo: "Expo"
+  expo: "Expo",
 };
 
-// Content types - the primary classification (what am I doing?)
 export const contentTypes = ["recipe", "prep", "checklist"] as const;
-export type ContentType = typeof contentTypes[number];
+export type ContentType = (typeof contentTypes)[number];
 
 export const contentTypeLabels: Record<ContentType, string> = {
   recipe: "Recipes",
   prep: "Prep & Mise en Place",
-  checklist: "Checklists"
+  checklist: "Checklists",
 };
 
 export const recipeCategories = [
   "prep",
   "tips",
-  "appetizers", 
+  "appetizers",
   "entrees",
   "sides",
   "kids",
@@ -34,10 +41,10 @@ export const recipeCategories = [
   "sauces",
   "desserts",
   "seasonings",
-  "wings"
+  "wings",
 ] as const;
 
-export type RecipeCategory = typeof recipeCategories[number];
+export type RecipeCategory = (typeof recipeCategories)[number];
 
 export const categoryLabels: Record<RecipeCategory, string> = {
   prep: "Prep Instructions",
@@ -50,7 +57,7 @@ export const categoryLabels: Record<RecipeCategory, string> = {
   sauces: "Sauces & Dressings",
   desserts: "Desserts",
   seasonings: "Seasonings",
-  wings: "Wings"
+  wings: "Wings",
 };
 
 export interface Recipe {
@@ -84,22 +91,3 @@ export const recipeSchema = z.object({
   internalTemp: z.string().optional(),
   portionSize: z.string().optional(),
 });
-
-// Keep existing user schema for template compatibility
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
-});
-
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
-
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
